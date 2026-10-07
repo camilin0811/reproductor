@@ -6,7 +6,7 @@
 
 /* Shell ---------------------------------------------------- */
 .app {
-  padding-bottom: calc(var(--dock-h) + var(--s6));
+  padding-right: var(--dock-w);
 }
 
 .card {
@@ -1437,27 +1437,33 @@ body.dragging .drop-zone.top-zone .drop-line {
 }
 
 /* Dock ------------------------------------------------------ */
+/* Columna de reproduccion, anclada a la derecha. No lleva height: se
+   estira sola entre top y bottom, y asi el guard de altura del dock
+   sigue aplicando solo al modo horizontal de movil. */
 .player-bar,
 .dock {
   position: fixed;
-  left: 0;
+  top: 0;
   right: 0;
   bottom: 0;
-  height: var(--dock-h);
+  width: var(--dock-w);
   z-index: 40;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   gap: var(--s4);
-  padding: 8px max(var(--s4), calc((100% - var(--shell-max)) / 2 + var(--s6)));
+  padding: var(--s6) var(--s4);
+  overflow-y: auto;
   background: var(--ink);
   color: var(--surface);
-  border-top: var(--bw-3) solid var(--rule);
+  border-left: var(--bw-3) solid var(--rule);
 }
 
 .dock-left {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: var(--s3);
   min-width: 0;
 }
@@ -1468,12 +1474,17 @@ body.dragging .drop-zone.top-zone .drop-line {
   justify-content: center;
 }
 
+/* los extras se van al fondo y dejan arriba el bloque de la cancion */
 .dock-right {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   gap: var(--s2);
   min-width: 0;
+  margin-top: auto;
+  padding-top: var(--s4);
+  border-top: var(--bw-2) solid var(--ink-2);
 }
 
 .now-playing {
@@ -1481,10 +1492,11 @@ body.dragging .drop-zone.top-zone .drop-line {
 }
 
 .dock-cover {
-  width: 52px;
-  height: 52px;
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1;
   border: var(--bw-2) solid var(--lime);
-  border-radius: var(--r-1);
+  border-radius: var(--r-2);
   background: var(--ink);
   color: var(--lime);
   display: grid;
@@ -1495,15 +1507,18 @@ body.dragging .drop-zone.top-zone .drop-line {
 
 .dock-info {
   min-width: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
 .dock-title {
   font-family: var(--font-display);
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   font-weight: 800;
   text-transform: uppercase;
+  line-height: 1.1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1525,7 +1540,8 @@ body.dragging .drop-zone.top-zone .drop-line {
 .controls {
   display: flex;
   align-items: center;
-  gap: var(--s2);
+  justify-content: center;
+  gap: var(--s1);
 }
 
 .player-bar .btn-circle,
@@ -1657,10 +1673,9 @@ body.dragging .drop-zone.top-zone .drop-line {
 /* Queue sheet ---------------------------------------------- */
 .queue-sheet {
   position: fixed;
-  left: 50%;
-  bottom: calc(var(--dock-h) + var(--s3));
-  transform: translateX(-50%);
-  width: min(560px, calc(100% - var(--s8)));
+  right: calc(var(--dock-w) + var(--s4));
+  bottom: var(--s6);
+  width: min(460px, calc(100% - var(--dock-w) - var(--s8)));
   max-height: 50vh;
   overflow-y: auto;
   z-index: 45;
@@ -1706,8 +1721,8 @@ body.dragging .drop-zone.top-zone .drop-line {
 
 .dock-more-sheet {
   position: fixed;
-  right: var(--s4);
-  bottom: calc(var(--dock-h) + var(--s3));
+  right: calc(var(--dock-w) + var(--s4));
+  bottom: var(--s6);
   z-index: 46;
   background: var(--surface);
   border: var(--bw-2) solid var(--rule);
@@ -1787,8 +1802,8 @@ body.dragging .drop-zone.top-zone .drop-line {
 /* Toasts ---------------------------------------------------- */
 .toast-container {
   position: fixed;
-  left: 50%;
-  bottom: calc(var(--dock-h) + var(--s6));
+  left: calc(50% - var(--dock-w) / 2);
+  bottom: var(--s6);
   transform: translateX(-50%);
   z-index: 70;
   display: flex;
@@ -2331,6 +2346,16 @@ body.dragging .drop-zone.top-zone .drop-line {
   }
 }
 
+@media (max-width: 1240px) {
+  :root {
+    --dock-w: 248px;
+  }
+
+  .dock-cover {
+    max-width: 150px;
+  }
+}
+
 @media (max-width: 960px) {
   .layout {
     grid-template-columns: minmax(0, 1fr);
@@ -2398,26 +2423,67 @@ body.dragging .drop-zone.top-zone .drop-line {
     padding: var(--s3) var(--s4);
   }
 
+  .app {
+    padding-right: 0;
+    padding-bottom: calc(var(--dock-h) + var(--s6));
+  }
+
   .player-bar {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
     height: var(--dock-h);
+    display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas: "left center" "right right";
     align-content: center;
     gap: var(--s2);
-    padding: var(--s2) var(--s4);
+    padding: 8px var(--s4);
+    overflow: visible;
+    border-left: 0;
+    border-top: var(--bw-3) solid var(--rule);
   }
 
   .dock-left {
     grid-area: left;
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .dock-cover {
+    width: 52px;
+    max-width: 52px;
+    border-radius: var(--r-1);
+  }
+
+  .dock-title {
+    font-size: var(--fs-small);
   }
 
   .dock-center {
     grid-area: center;
+    margin-top: 0;
   }
 
   .dock-right {
     grid-area: right;
     justify-content: space-between;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .queue-sheet,
+  .dock-more-sheet {
+    right: var(--s4);
+    bottom: calc(var(--dock-h) + var(--s3));
+    width: min(560px, calc(100% - var(--s8)));
+  }
+
+  .toast-container {
+    left: 50%;
+    bottom: calc(var(--dock-h) + var(--s6));
   }
 
   .dock-artist {
