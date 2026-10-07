@@ -92,7 +92,7 @@ export function handleDelete(indexOrNode: number|ListNode<Song>): void {
   if(wasCurrent){
     if (wasPlayingListEmptyAfter || player.current === null) {
       try{ getActiveEngine().pause(); }catch{}
-      document.title = "Linked Beats";
+      document.title = "climax";
       const host = document.getElementById("ytHost"); host?.remove();
       const lab = document.getElementById("visualizerLabel"); if(lab) lab.textContent="";
       destroyYouTubeIfEmpty();

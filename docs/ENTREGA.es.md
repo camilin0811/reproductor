@@ -1,4 +1,4 @@
-# Linked Beats — Entrega
+# climax — Entrega
 
 Que es: reproductor en el navegador donde cada playlist es una lista doblemente enlazada hecha a mano. No hay canciones quemadas. Todo viene del sistema de archivos del usuario o de vistas previas de iTunes.
 
@@ -23,7 +23,7 @@ npm install && npm run build && npm run serve
 # abrir http://localhost:8000
 ```
 
-Version en vivo: https://linked-beats-sooty.vercel.app
+Version en vivo: https://reproductor-gamma.vercel.app
 
 Preguntas posibles:
 
