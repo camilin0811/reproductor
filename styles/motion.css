@@ -1,0 +1,205 @@
+/* Entrada inicial: cada bloque sube un poco y aparece, escalonado */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.topbar {
+  animation: fadeInUp var(--dur-reveal) var(--ease-out-expo) backwards;
+}
+
+.hero {
+  animation: fadeInUp var(--dur-reveal) var(--ease-out-expo) 60ms backwards;
+}
+
+.linked-section {
+  animation: fadeInUp var(--dur-reveal) var(--ease-out-expo) 120ms backwards;
+}
+
+.toolbar {
+  animation: fadeInUp var(--dur-reveal) var(--ease-out-expo) 180ms backwards;
+}
+
+/* El titulo cambia palabra a palabra, como un panel de aeropuerto */
+.word-mask {
+  overflow: hidden;
+}
+
+.word-inner {
+  display: inline-block;
+  transform: translateY(0);
+}
+
+.word-inner.enter {
+  animation: wordIn var(--dur-reveal) var(--ease-out-expo) backwards;
+}
+
+.word-inner.exit {
+  animation: wordOut 420ms var(--ease-in-out-quart) backwards;
+}
+
+@keyframes wordIn {
+  from {
+    transform: translateY(105%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes wordOut {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-105%);
+  }
+}
+
+/* La tira de nodos se recoloca deslizandose, sin mover la pagina */
+.ll-strip.moving {
+  transition: transform var(--dur-reveal) var(--ease-out-expo);
+}
+
+/* Cuando un puntero se reescribe, su flecha parpadea */
+.ll-arrow.flash {
+  animation: arrowFlash var(--dur-base) var(--ease-out-cubic);
+}
+
+@keyframes arrowFlash {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* El disco solo gira mientras suena algo */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes logoOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ringDash {
+  from {
+    transform: rotate(-90deg);
+  }
+
+  to {
+    transform: rotate(270deg);
+  }
+}
+
+.ring-progress.indeterminate {
+  animation: ringDash 1.2s linear infinite;
+  transform-origin: center;
+}
+
+.queue-sheet {
+  transition: transform var(--dur-base) var(--ease-out-expo), opacity var(--dur-base) var(--ease-out-expo);
+}
+
+/* Curva de aceleracion comun para todo lo que responde al raton */
+.btn,
+.btn-circle,
+.btn-toggle,
+.topbar-link,
+.song-row,
+.ll-node,
+.search-result-row {
+  transition-timing-function: var(--ease-out-cubic);
+}
+
+.btn:active,
+.btn-circle:active,
+.btn-pill-outline:active {
+  transform: scale(0.98);
+}
+
+/* Las filas se reordenan moviendose, nunca saltando de sitio */
+.song-row {
+  will-change: transform, opacity;
+}
+
+/* Los avisos entran desde abajo desvaneciendose */
+.toast {
+  will-change: transform, opacity;
+}
+
+/* Las barras del analizador solo cambian opacidad desde aqui */
+.visualizer {
+  will-change: opacity;
+}
+
+/* Si el sistema pide menos animacion, todo pasa a ser instantaneo */
+@media (prefers-reduced-motion: reduce) {
+  .topbar,
+  .hero,
+  .linked-section,
+  .toolbar {
+    animation: none !important;
+  }
+
+  .logo-orbit {
+    animation: none !important;
+  }
+
+  .cover-art.spinning,
+  .cover-art.paused-spin {
+    animation: none !important;
+  }
+
+  .ring-progress.indeterminate {
+    animation: none !important;
+  }
+
+  .word-inner.enter,
+  .word-inner.exit {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .ll-strip.moving {
+    transition: none !important;
+  }
+
+  .ll-arrow.flash {
+    animation: none !important;
+  }
+
+  .song-row {
+    transition: none !important;
+  }
+
+  .toast {
+    transition: none !important;
+  }
+}

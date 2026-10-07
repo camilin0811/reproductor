@@ -1,0 +1,78 @@
+:root {
+  color-scheme: light;
+  /* surfaces — warm sand room, off-white cards */
+  --paper: #FBF1E4;
+  --surface: #FFFBF4;
+  --paper-2: #F3E4D0;
+  --paper-3: #E8D3B8;
+  /* text */
+  --ink: #1C1410;
+  --ink-2: #4A3B30;
+  --ink-3: #6B5747;
+  /* lines — thick ink outlines, not hairlines */
+  --rule: #1C1410;
+  --rule-soft: rgba(28, 20, 16, 0.14);
+  --rule-strong: rgba(28, 20, 16, 0.88);
+  --scrim: rgba(28, 20, 16, 0.5);
+  --paper-ring: rgba(255, 251, 244, 0.2);
+  --bw-1: 1px;
+  --bw-2: 2px;
+  --bw-3: 3px;
+  /* the ONE accent: primary action, active row, focus */
+  --accent: #E8420F;
+  --accent-soft: #FFE2D4;
+  --accent-line: rgba(232, 66, 15, 0.4);
+  /* a flat second hue for tags and the equalizer */
+  --lime: #C9F24D;
+  /* type */
+  --font-display: "Syne", "Trebuchet MS", sans-serif;
+  --font-text: "Space Grotesk", system-ui, sans-serif;
+  --fs-display: clamp(2.25rem, 4.5vw, 3.75rem);
+  --fs-title: clamp(1.25rem, 2vw, 1.75rem);
+  --fs-body: 0.9375rem;
+  --fs-small: 0.8125rem;
+  --fs-label: 0.6875rem;
+  /* space (4px scale) */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s6: 24px;
+  --s8: 32px;
+  --s12: 48px;
+  --s16: 64px;
+  /* radius — big friendly corners */
+  --r-0: 0;
+  --r-pill: 9999px;
+  --r-1: 10px;
+  --r-2: 16px;
+  --r-card: 28px;
+  /* chrome */
+  --dock-h: 88px;
+  --topbar-h: 64px;
+  --shell-max: 1440px;
+  --rail-w: 300px;
+  /* rings */
+  --ring-size-hero: 208px;
+  --ring-size-dock: 72px;
+  --ring-stroke: 4px;
+  --ring-track: 2px;
+  --ring-knob: 12px;
+  --ring-knob-active: 16px;
+  --ring-radius-hero: 120px;
+  --ring-radius-dock: 32px;
+  /* easing + durations */
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --dur-fast: 180ms;
+  --dur-base: 240ms;
+  --dur-reveal: 700ms;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --dock-h: 96px;
+    --ring-size-hero: 168px;
+  }
+}
