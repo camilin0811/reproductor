@@ -7,3 +7,6 @@ site
 inspo/
 inspo.txt
 _briefs/
+
+# copia temporal de tests con rutas parcheadas para Windows
+.tmptest
