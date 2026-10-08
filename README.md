@@ -1,4 +1,4 @@
-# climax — Doubly Linked Music Player
+# Rossywar — Doubly Linked Music Player
 
 Browser music player where every playlist is a hand-written doubly linked list. No frameworks, no bundlers, no hardcoded songs.
 

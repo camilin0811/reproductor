@@ -3,8 +3,8 @@ import { engineSeek, engineCurrentTime, engineDuration, enginePaused, getActiveE
 import { audioEl } from "../dom.js";
 
 export function updateDocumentTitle(isPlaying: boolean): void {
-  if (isPlaying && player.current) document.title = `▶ ${player.current.value.title} · climax`;
-  else document.title = "climax";
+  if (isPlaying && player.current) document.title = `▶ ${player.current.value.title} · Rossywar`;
+  else document.title = "Rossywar";
 }
 
 export function initMediaSession(handlePlayPause: () => void, handlePrev: () => void, handleNext: () => void, clampSeek: (n: number) => void): void {
