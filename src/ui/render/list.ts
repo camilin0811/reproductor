@@ -88,18 +88,28 @@ export function renderSongs(): void {
     const id = (child as HTMLElement).dataset["id"]; const isGap = child.classList.contains("gap");
     if (isGap) continue;
     if (id && !existingIds.has(id)) {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) child.remove();
-      else {
-        const el = child as HTMLElement;
-        const anim = el.animate([{ opacity: 1, transform: "scaleY(1)" }, { opacity: 0, transform: "scaleY(0.8)" }], { duration: 320, easing: "cubic-bezier(0.19,1,0.22,1)" });
-        anim.onfinish = () => el.remove();
-      }
+      const el = child as HTMLElement;
+      // Una fila sin cancion detras no puede quedarse en la pagina: si se
+      // queda, al pulsarla reproduce la cancion que ya se borro. La salida se
+      // anima, pero la retirada NO depende de que la animacion termine: al
+      // reordenar la lista el navegador puede cancelarla, y entonces el
+      // onfinish no llega nunca y la fila se queda ahi para siempre.
+      if (el.dataset["leaving"] === "1") continue;
+      el.dataset["leaving"] = "1";
+      el.style.pointerEvents = "none";
+      const quitar = (): void => el.remove();
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { quitar(); continue; }
+      const anim = el.animate([{ opacity: 1, transform: "scaleY(1)" }, { opacity: 0, transform: "scaleY(0.8)" }], { duration: 320, easing: "cubic-bezier(0.19,1,0.22,1)" });
+      anim.onfinish = quitar;
+      anim.oncancel = quitar;
+      window.setTimeout(quitar, 400);
     }
   }
   const audioPlaying = !enginePaused(); const currentId = player.current?.value.id ?? null;
   const rows: HTMLElement[] = [];
   for (const entry of visible) {
-    let row = songListEl.querySelector(`[data-id="${entry.song.id}"]`) as HTMLElement | null;
+    // :not([data-leaving]) para no reciclar una fila que se esta retirando
+    let row = songListEl.querySelector(`[data-id="${entry.song.id}"]:not([data-leaving])`) as HTMLElement | null;
     if (!row || row.parentElement !== songListEl) row = buildRow(entry);
     else {
       const ct = row.querySelector(".song-title")?.textContent ?? "";
