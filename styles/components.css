@@ -297,8 +297,9 @@
   letter-spacing: -0.03em;
   text-transform: uppercase;
   text-wrap: balance;
+  /* overflow-wrap solo parte la palabra si no cabe entera en una linea;
+     word-break: break-word la troceaba aunque cupiera en la siguiente */
   overflow-wrap: break-word;
-  word-break: break-word;
 }
 
 .hero-title .word-mask {
@@ -1452,11 +1453,29 @@ body.dragging .drop-zone.top-zone .drop-line {
   flex-direction: column;
   align-items: stretch;
   gap: var(--s4);
-  padding: var(--s6) var(--s4);
+  padding: var(--s6) var(--s6) var(--s6) var(--s8);
   overflow-y: auto;
   background: var(--ink);
   color: var(--surface);
-  border-left: var(--bw-3) solid var(--rule);
+}
+
+/* El canto izquierdo de la columna va ondulado: una fila de semicirculos del
+   color del fondo que muerden el panel, cada uno con su anillo de tinta. Los
+   circulos se tocan (el alto del mosaico es el doble del radio), asi que el
+   contorno sale continuo en vez de a parches. */
+.player-bar::before,
+.dock::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 13px;
+  z-index: 2;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 0 50%, var(--paper) 0 9px, var(--rule) 9px 12px, transparent 12px);
+  background-size: 13px 18px;
+  background-repeat: repeat-y;
 }
 
 .dock-left {
@@ -1493,7 +1512,7 @@ body.dragging .drop-zone.top-zone .drop-line {
 
 .dock-cover {
   width: 100%;
-  max-width: 200px;
+  max-width: 248px;
   aspect-ratio: 1;
   border: var(--bw-2) solid var(--lime);
   border-radius: var(--r-2);
@@ -2348,11 +2367,11 @@ body.dragging .drop-zone.top-zone .drop-line {
 
 @media (max-width: 1240px) {
   :root {
-    --dock-w: 248px;
+    --dock-w: 300px;
   }
 
   .dock-cover {
-    max-width: 150px;
+    max-width: 190px;
   }
 }
 
@@ -2426,6 +2445,11 @@ body.dragging .drop-zone.top-zone .drop-line {
   .app {
     padding-right: 0;
     padding-bottom: calc(var(--dock-h) + var(--s6));
+  }
+
+  .player-bar::before,
+  .dock::before {
+    display: none;
   }
 
   .player-bar {
