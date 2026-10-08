@@ -1,15 +1,15 @@
 :root {
   color-scheme: light;
-  /* surfaces — warm sand room, off-white cards */
+  /* las superficies: una sala de arena templada y tarjetas color hueso */
   --paper: #FBF1E4;
   --surface: #FFFBF4;
   --paper-2: #F3E4D0;
   --paper-3: #E8D3B8;
-  /* text */
+  /* la tinta, de mas oscura a mas suave */
   --ink: #1C1410;
   --ink-2: #4A3B30;
   --ink-3: #6B5747;
-  /* lines — thick ink outlines, not hairlines */
+  /* los trazos van gruesos y en tinta: aqui no hay lineas de un pelo */
   --rule: #1C1410;
   --rule-soft: rgba(28, 20, 16, 0.14);
   --rule-strong: rgba(28, 20, 16, 0.88);
@@ -18,13 +18,13 @@
   --bw-1: 1px;
   --bw-2: 2px;
   --bw-3: 3px;
-  /* the ONE accent: primary action, active row, focus */
+  /* el coral manda en todo lo que se puede pulsar, y en nada mas */
   --accent: #E8420F;
   --accent-soft: #FFE2D4;
   --accent-line: rgba(232, 66, 15, 0.4);
-  /* a flat second hue for tags and the equalizer */
+  /* el lima acompana: etiquetas, barras del analizador y estados activos */
   --lime: #C9F24D;
-  /* type */
+  /* las dos familias y la escala de tamanos */
   --font-display: "Syne", "Trebuchet MS", sans-serif;
   --font-text: "Space Grotesk", system-ui, sans-serif;
   --fs-display: clamp(1.75rem, 3.2vw, 2.75rem);
@@ -32,7 +32,7 @@
   --fs-body: 0.9375rem;
   --fs-small: 0.8125rem;
   --fs-label: 0.6875rem;
-  /* space (4px scale) */
+  /* los espacios crecen de cuatro en cuatro */
   --s1: 4px;
   --s2: 8px;
   --s3: 12px;
@@ -41,19 +41,19 @@
   --s8: 32px;
   --s12: 48px;
   --s16: 64px;
-  /* radius — big friendly corners */
+  /* esquinas generosas, nada de cantos vivos */
   --r-0: 0;
   --r-pill: 9999px;
   --r-1: 10px;
   --r-2: 16px;
   --r-card: 28px;
-  /* chrome */
+  /* las medidas del armazon: columna, barra y anchos maximos */
   --dock-h: 88px;
-  --dock-w: 380px;
+  --dock-w: 460px;
   --topbar-h: 64px;
   --shell-max: 1440px;
   --rail-w: 300px;
-  /* rings */
+  /* el aro de avance y su bolita */
   --ring-size-hero: 208px;
   --ring-size-dock: 72px;
   --ring-stroke: 4px;
@@ -62,7 +62,7 @@
   --ring-knob-active: 16px;
   --ring-radius-hero: 120px;
   --ring-radius-dock: 32px;
-  /* easing + durations */
+  /* como acelera y cuanto dura cada movimiento */
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);

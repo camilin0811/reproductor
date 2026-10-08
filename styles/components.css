@@ -1,10 +1,12 @@
 /* ============================================================
-   Rossywar — sand & ink
-   Flat warm surfaces outlined in 2px ink, big corners, coral for
-   anything you can press. No shadows anywhere.
+   Rossywar — arena y tinta
+
+   Superficies planas y calidas, perfiladas con trazo de 2 px, esquinas
+   anchas y coral para todo lo que se pueda pulsar. Ni una sombra: el
+   relieve lo dan los contornos y los rellenos.
    ============================================================ */
 
-/* Shell ---------------------------------------------------- */
+/* El armazon: el hueco de la columna y la rejilla general ------- */
 .app {
   padding-right: var(--dock-w);
 }
@@ -33,7 +35,7 @@
   gap: var(--s6);
 }
 
-/* Top bar -------------------------------------------------- */
+/* La barra de arriba: marca, buscador y accesos ----------------- */
 .topbar {
   position: sticky;
   top: 0;
@@ -145,7 +147,7 @@
   display: none;
 }
 
-/* Global search field in the top bar ------------------------ */
+/* El buscador, que filtra la lista mientras escribes ------------ */
 .search-wrap {
   position: relative;
   display: flex;
@@ -205,7 +207,7 @@
   border-radius: var(--r-pill);
 }
 
-/* Menu sheet (mobile) -------------------------------------- */
+/* El desplegable que sustituye a los accesos en pantalla chica -- */
 .menu-sheet {
   position: fixed;
   inset: 0 0 auto 0;
@@ -261,7 +263,7 @@
   text-transform: uppercase;
 }
 
-/* Now playing card ----------------------------------------- */
+/* La tarjeta de lo que suena ahora ------------------------------ */
 .hero {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -377,7 +379,7 @@
   gap: var(--s3);
 }
 
-/* Seek ring + record ---------------------------------------- */
+/* El aro para avanzar y el disco que gira dentro ---------------- */
 .hero-ring {
   position: relative;
   width: var(--ring-size-hero);
@@ -629,7 +631,7 @@
   color: var(--lime);
 }
 
-/* Linked list strip ---------------------------------------- */
+/* La tira de nodos: cada caja es un nodo y cada flecha un puntero */
 .linked-section {
   padding: var(--s6);
   display: flex;
@@ -759,7 +761,7 @@
   font-weight: 500;
 }
 
-/* Rail (playlists + tools) ---------------------------------- */
+/* La columna de la izquierda: listas y herramientas ------------- */
 .rail {
   display: flex;
   flex-direction: column;
@@ -856,7 +858,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Playlist card -------------------------------------------- */
+/* La tarjeta grande con la lista de canciones ------------------- */
 .center {
   min-width: 0;
   overflow: hidden;
@@ -931,7 +933,7 @@
   font-weight: 700;
 }
 
-/* Song list ------------------------------------------------ */
+/* Las filas, los huecos entre ellas y las zonas de soltar ------- */
 .playlist-container {
   position: relative;
   padding: var(--s4);
@@ -1005,8 +1007,8 @@ body.dragging .drop-zone.top-zone .drop-line {
   transition: background var(--dur-fast) var(--ease-out-cubic), transform var(--dur-fast) var(--ease-out-cubic);
 }
 
-/* while a search filters the list the gap elements are removed, so
-   consecutive rows need their own breathing room */
+/* con la busqueda activa los huecos desaparecen, asi que las filas
+   seguidas necesitan separarse por su cuenta */
 .song-row + .song-row {
   margin-top: var(--s2);
 }
@@ -1255,7 +1257,7 @@ body.dragging .drop-zone.top-zone .drop-line {
   font-weight: 500;
 }
 
-/* Buttons --------------------------------------------------- */
+/* Botones: los de texto, los redondos y sus estados ------------- */
 .btn {
   appearance: none;
   display: inline-flex;
@@ -1373,7 +1375,7 @@ body.dragging .drop-zone.top-zone .drop-line {
   color: var(--lime);
 }
 
-/* Rail inputs and rows -------------------------------------- */
+/* Campos de texto y filas de botones de la columna izquierda ---- */
 .rail-input {
   flex: 1;
   min-width: 0;
@@ -1437,7 +1439,7 @@ body.dragging .drop-zone.top-zone .drop-line {
   flex-wrap: wrap;
 }
 
-/* Dock ------------------------------------------------------ */
+/* La columna de reproduccion, pegada a la derecha --------------- */
 /* Columna de reproduccion, anclada a la derecha. No lleva height: se
    estira sola entre top y bottom, y asi el guard de altura del dock
    sigue aplicando solo al modo horizontal de movil. */
@@ -1512,7 +1514,7 @@ body.dragging .drop-zone.top-zone .drop-line {
 
 .dock-cover {
   width: 100%;
-  max-width: 248px;
+  max-width: 300px;
   aspect-ratio: 1;
   border: var(--bw-2) solid var(--lime);
   border-radius: var(--r-2);
@@ -1689,7 +1691,7 @@ body.dragging .drop-zone.top-zone .drop-line {
   font-variant-numeric: tabular-nums;
 }
 
-/* Queue sheet ---------------------------------------------- */
+/* La hoja de lo que viene despues y el menu de los extras ------- */
 .queue-sheet {
   position: fixed;
   right: calc(var(--dock-w) + var(--s4));
@@ -1756,7 +1758,7 @@ body.dragging .drop-zone.top-zone .drop-line {
   display: none;
 }
 
-/* Volume slider --------------------------------------------- */
+/* La barra de volumen, repintada en los tres motores del navegador */
 #volumeBar {
   appearance: none;
   width: 92px;
@@ -1818,7 +1820,7 @@ body.dragging .drop-zone.top-zone .drop-line {
   width: 120px;
 }
 
-/* Toasts ---------------------------------------------------- */
+/* Los avisos flotantes que se van solos ------------------------- */
 .toast-container {
   position: fixed;
   left: calc(50% - var(--dock-w) / 2);
@@ -1903,7 +1905,7 @@ body.dragging .drop-zone.top-zone .drop-line {
   color: var(--accent);
 }
 
-/* Dialogs --------------------------------------------------- */
+/* Las ventanas propias: atajos, renombrar, confirmar ------------ */
 .dialog-overlay {
   position: fixed;
   inset: 0;
@@ -1983,7 +1985,7 @@ body.dragging .drop-zone.top-zone .drop-line {
   font-weight: 500;
 }
 
-/* Popovers -------------------------------------------------- */
+/* Los menus que se abren junto a la fila que los pide ----------- */
 .popover {
   position: absolute;
   z-index: 90;
@@ -2025,7 +2027,7 @@ body.dragging .drop-zone.top-zone .drop-line {
   min-width: 210px;
 }
 
-/* Drop overlay ---------------------------------------------- */
+/* El velo que aparece al arrastrar archivos sobre la ventana ---- */
 .drop-overlay {
   position: fixed;
   inset: 0;
@@ -2047,7 +2049,7 @@ body.dragging .drop-zone.top-zone .drop-line {
   opacity: 1;
 }
 
-/* Search panel ---------------------------------------------- */
+/* El buscador en linea: fuentes, filtros y resultados ----------- */
 .search-overlay {
   align-items: start;
   padding-top: var(--s12);
@@ -2297,7 +2299,7 @@ body.dragging .drop-zone.top-zone .drop-line {
   top: 0;
 }
 
-/* Misc ------------------------------------------------------ */
+/* Piezas sueltas: salto al contenido, globos y pistas ----------- */
 .skip-link {
   position: absolute;
   left: var(--s4);
@@ -2343,7 +2345,7 @@ body.dragging .drop-zone.top-zone .drop-line {
   color: var(--ink-3);
 }
 
-/* Responsive ------------------------------------------------ */
+/* Como se recoloca todo segun mengua la pantalla ---------------- */
 @media (max-width: 1100px) {
   .hero {
     grid-template-columns: minmax(0, 1fr);
